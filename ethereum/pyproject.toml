@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "chainlink-prices"
+version = "0.1.0"
+description = "Get the off-chain prices"
+authors = ["sunpengliang <sunpengliang@kayalabs.io>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest = "^7.4.0"
+web3 = "^6.5.0"
+clickhouse-connect = "^0.6.4"
+pandas = "^2.0.2"
+multiprocessing-logging = "0.3.4"
+
+
+
+[tool.poetry.group.dev.dependencies]
+python-dotenv = "*"
+prefect = "==2.8.5"
+
+[tool.poetry.group.test.dependencies]
+pytest = "*"
+pytest-dotenv = "0.5.2"
+
+[tool.poetry.scripts]
+chaindecode = 'chaindecode.cli:app'
+
+[[tool.poetry.source]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = false
+secondary = true
+
+[tool.poe.tasks]
+test  = "pytest --cov=poethepoet"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = "tests/"
